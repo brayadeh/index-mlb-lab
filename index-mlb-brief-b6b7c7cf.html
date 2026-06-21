@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mlb · 一笔来自联盟日常的随笔</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f2f2f0;
+            color: #2c2b28;
+            line-height: 1.65;
+            padding: 2rem 1.2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page {
+            max-width: 800px;
+            width: 100%;
+        }
+
+        /* 文章头部 */
+        .post-header {
+            margin-bottom: 2.4rem;
+            padding-bottom: 0.6rem;
+            border-bottom: 1px solid #d9d6d0;
+        }
+
+        .post-header h1 {
+            font-size: 2rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            color: #1f1e1b;
+            margin-bottom: 0.3rem;
+        }
+
+        .post-header .meta {
+            font-size: 0.9rem;
+            color: #7a776f;
+            display: flex;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+        }
+
+        .post-header .meta span::before {
+            content: "·";
+            margin-right: 0.5rem;
+            color: #b3afa7;
+        }
+
+        .post-header .meta span:first-child::before {
+            content: "";
+            margin-right: 0;
+        }
+
+        /* 导语卡片 */
+        .lead-card {
+            background: #ffffff;
+            border-radius: 14px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03), 0 1px 3px rgba(0,0,0,0.05);
+            border: 1px solid #e3dfd9;
+            padding: 1.8rem 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .lead-card p {
+            font-size: 1.05rem;
+            color: #3b3a36;
+        }
+
+        .lead-card strong {
+            font-weight: 500;
+            color: #1f1e1b;
+        }
+
+        /* 正文卡片 */
+        .card {
+            background: #ffffff;
+            border-radius: 14px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03), 0 1px 3px rgba(0,0,0,0.05);
+            border: 1px solid #e3dfd9;
+            padding: 1.8rem 2rem;
+            margin-bottom: 1.6rem;
+        }
+
+        .card h2 {
+            font-size: 1.25rem;
+            font-weight: 500;
+            margin-bottom: 0.8rem;
+            color: #2b2925;
+            border-left: 3px solid #b8a58b;
+            padding-left: 0.8rem;
+        }
+
+        .card p {
+            margin-bottom: 1rem;
+        }
+
+        .card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .card .subnote {
+            font-size: 0.95rem;
+            color: #6b6862;
+            background: #f6f4f0;
+            padding: 0.8rem 1.2rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+        }
+
+        /* 引用与提示 */
+        .quote-block {
+            background: #f5f2ed;
+            border-left: 4px solid #bfb09c;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 12px 12px 0;
+            font-style: normal;
+            color: #3d3a34;
+        }
+
+        .quote-block cite {
+            display: block;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            color: #7a776f;
+        }
+
+        .hint-box {
+            background: #faf8f5;
+            border: 1px dashed #c9c0b4;
+            border-radius: 12px;
+            padding: 1.2rem 1.5rem;
+            margin: 1.8rem 0 0.5rem 0;
+            font-size: 0.95rem;
+        }
+
+        .hint-box span {
+            font-weight: 500;
+            color: #5a5245;
+        }
+
+        /* 链接样式 */
+        a {
+            color: #6f5e4a;
+            text-decoration: underline;
+            text-underline-offset: 0.2rem;
+            text-decoration-thickness: 1px;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: #3f352b;
+            text-decoration-color: #b39d86;
+        }
+
+        /* 分隔 */
+        .divider {
+            border: none;
+            border-top: 1px solid #ddd9d1;
+            margin: 2rem 0;
+        }
+
+        /* 页脚 */
+        .footer-note {
+            margin-top: 3rem;
+            padding-top: 1.2rem;
+            border-top: 1px solid #ddd9d1;
+            font-size: 0.9rem;
+            color: #8a867e;
+            text-align: center;
+        }
+
+        /* 响应式 */
+        @media (max-width: 540px) {
+            body {
+                padding: 1.2rem 0.8rem;
+            }
+
+            .post-header h1 {
+                font-size: 1.5rem;
+            }
+
+            .lead-card, .card {
+                padding: 1.2rem 1.2rem;
+            }
+
+            .quote-block {
+                padding: 1rem 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <article>
+        <!-- 文章标题 / 头部 -->
+        <div class="post-header">
+            <h1>联盟日常：当比赛成为生活的标点</h1>
+            <div class="meta">
+                <span>随笔</span>
+                <span>2025 · 四月</span>
+                <span>读球手记</span>
+            </div>
+        </div>
+
+        <!-- 导语 -->
+        <div class="lead-card">
+            <p>
+                一场比赛不是孤立的比分——它连着通勤路上的播客、深夜重播的叹息、早餐时刷新的排名。
+                从场边到屏幕，<strong>mlb</strong> 慢慢长成了一种生活节奏。以下是一些散记，关于怎样把联盟日常过成自己的叙事。
+            </p>
+        </div>
+
+        <!-- 正文段落 1 -->
+        <div class="card">
+            <h2>并非胜负，而是日历</h2>
+            <p>
+                最早意识到这件事，是发现自己的星期概念变了。过去靠周一、周三标记日子，后来开始以「明天早起看午场」「周末有分区德比」来安排作息。联盟赛程表像一本被翻旧的日程本，上面画满了圆圈和箭头。
+            </p>
+            <p>
+                朋友问我最近忙什么，我回答说在追一个漫长的故事，每天两到三小时，没有剧本，但总有意外转折。对方以为我在看某部剧集，我说更像是跟着一支队伍过日子——输赢当然重要，但更踏实的是那种「每天都有新内容」的陪伴感。
+            </p>
+        </div>
+
+        <!-- 正文段落 2 + 引用 -->
+        <div class="card">
+            <h2>松弛的专注</h2>
+            <p>
+                有段时间我试着一边看比赛一边处理工作，结果不是漏掉关键安打就是文档写了一半去查数据。后来干脆把这段时间空出来，关掉手机通知，只留一个画面。奇怪的是，从这种专注中抽离后，反而更能理清其他事情的顺序。
+            </p>
+            <div class="quote-block">
+                「看球时不需要刻意记住什么，但那些本垒打的声音、满球数的紧张、赛后采访的语气，会自动变成记忆里的锚点。」
+                <cite>—— 摘自某次深夜聊天记录</cite>
+            </div>
+            <p>
+                这种松弛的专注，大概就是很多朋友喜欢把比赛当作背景音的原因——不需要时刻紧绷，但随时抬头都能接上剧情。
+            </p>
+        </div>
+
+        <!-- 正文段落 3: 场景与碎片 -->
+        <div class="card">
+            <h2>那些碎片里的联盟</h2>
+            <p>
+                地铁上有人用手机看集锦，咖啡店电视无声播放着昨日好球，群聊里深夜还在争论某个调度——这些碎片拼起来，就是联盟在生活里的形状。不需要成为专家，也不需要记住所有数据，只要有一个自己特别在意的细节就够了。
+            </p>
+            <p>
+                比如我会因为某个投手的投球动作很流畅而多关注几场，也有人专门研究打者进入击球区的习惯。联盟的魅力在于，它允许每个人用自己的方式寻找连接点。
+            </p>
+            <div class="hint-box">
+                <span>⌘ 如果你也在寻找一个可以长期关注的联赛节奏，</span> 不妨从 <a href="https://index-mlb.com">mlb</a> 开始——不是作为任务，而是当作一段随时可以走进的日常。
+            </div>
+        </div>
+
+        <!-- 一段短的过渡 / 提示性段落 -->
+        <div class="card">
+            <h2>关于「跟进」这件事</h2>
+            <p>
+                经常有人问：那么多比赛怎么看得过来？我的经验是不要试图「追完」所有内容。挑一支主队，或者只关注某个分区，甚至只看文字转播——选择最舒服的入口就好。联盟的好处是，你总是可以在任何时刻加入，不用从头补课。
+            </p>
+            <p>
+                比起记住所有比分，更有意思的是发现那些细微的叙事：球员赛后采访里的一句话，某个新秀逐渐适应节奏的过程，或者对手之间微妙的历史渊源。这些才是让比赛变成故事的东西。
+            </p>
+        </div>
+
+        <!-- FAQ 摘要风格卡片 -->
+        <div class="card">
+            <h2>或许你也想过这些</h2>
+            <p><strong>Q：</strong> 完全不懂规则，也能找到乐趣吗？<br>
+            <strong>A：</strong> 可以。很多人是从一个画面、一段解说、甚至一个球员的名字开始。规则慢慢就会熟悉，不必着急。</p>
+
+            <p style="margin-top: 0.8rem;"><strong>Q：</strong> 每天看比赛会不会太花时间？<br>
+            <strong>A：</strong> 看你自己。有人只赛后看三分钟集锦，有人直播当背景音，有人周末才补重播——没有固定格式。</p>
+
+            <p style="margin-top: 0.8rem;"><strong>Q：</strong> 怎么找到自己的主队？<br>
+            <strong>A：</strong> 多看看不同球队的转播，或者跟着一个喜欢的球员。有时候主队是慢慢「长」出来的，不用硬选。</p>
+
+            <div class="subnote">
+                📎 一条实用信息：联盟官方数据、赛程、新闻都可以通过 <a href="https://index-mlb.com">mlb</a> 找到索引。它更像一个起点，而不是终点。
+            </div>
+        </div>
+
+        <!-- 访问句 / 结语 -->
+        <div class="lead-card" style="margin-top: 0.4rem; background: #fbfaf7;">
+            <p style="font-style: normal; margin-bottom: 0.2rem;">
+                最后分享一句最近看到的话：<br>
+                「我们不是在看比赛，我们是在看一群人把一件事做到极致的样子。」
+            </p>
+            <p style="margin-top: 0.8rem; color: #5c5952;">
+                或许你也有自己的方式去靠近联盟。<br>
+                从这里开始，慢慢来——
+            </p>
+        </div>
+
+        <!-- 分隔 + 小提示 -->
+        <hr class="divider">
+        <div style="font-size: 0.9rem; color: #77736b; text-align: left; padding: 0.2rem 0;">
+            <span>📋 本文仅代表个人视角，不涉及任何官方立场。数据和赛程请以 <a href="https://index-mlb.com">mlb</a> 实际信息为准。</span>
+        </div>
+
+        <div class="footer-note">
+            <span>写于一个安静的晚上 · 关于联盟与生活的笔记</span>
+        </div>
+    </article>
+</div>
+</body>
+</html>
